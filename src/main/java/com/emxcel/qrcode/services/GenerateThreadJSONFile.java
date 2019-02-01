@@ -11,8 +11,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.CollectionType;
 
 public class GenerateThreadJSONFile {
-	public void threadjsonfile() {
-		File file = new File("C:\\Users\\admin\\eclipse-workspace\\qr-QrCodeEntity\\src\\main\\resource\\temp.json");
+	public void threadjsonfile(File filePath,String storagePath) {
+	//	if(!storagePath.equals(null));
+			
+			
+		File file = new File(filePath.toString());
 		GenerateThreadJSONFile threadobj = new GenerateThreadJSONFile();
 		String extension = threadobj.getFileExtension(file.getName());
 		ExecutorService service = Executors.newFixedThreadPool(10);
@@ -21,7 +24,7 @@ public class GenerateThreadJSONFile {
 			System.out.println("Total persons to be imported : " + QrCodeEntities.size());
 
 			for (QrCodeEntity c : QrCodeEntities) {
-				Runnable threadJsonrun = new ThreadRunnableClass(c);
+				Runnable threadJsonrun = new ThreadRunnableClass(c,storagePath);
 				service.execute(threadJsonrun);
 			}
 		} else {

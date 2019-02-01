@@ -12,20 +12,24 @@ import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 
 public class ThreadRunnableClass implements Runnable {
-	private String QRCODEPATH = "E:\\image\\";
+	private String storagePath;
 	private QrCodeEntity QrCodeEntity;
 
-	public ThreadRunnableClass(QrCodeEntity QrCodeEntity)
+	public ThreadRunnableClass(QrCodeEntity QrCodeEntity,String storagePath)
 	{
 		this.QrCodeEntity=QrCodeEntity;
+		this.storagePath=storagePath;
 	}
 
 	public void run() {
 		// TODO Auto-generated method stub
-		writeQRCode(QrCodeEntity);
+	//	storagePath="";
+		writeQRCode(QrCodeEntity,storagePath);
 	}
-	public String writeQRCode(QrCodeEntity QrCodeEntity) {
-		String qrcode = QRCODEPATH + QrCodeEntity.getFullName() + "-QRCODE.png";
+	public String writeQRCode(QrCodeEntity QrCodeEntity,String storagePath) {
+		if(storagePath.equals(""))
+			storagePath="E:\\image\\";
+		String qrcode = storagePath + QrCodeEntity.getFullName() + "-QRCODE.png";
 		QRCodeWriter writer = new QRCodeWriter();
 		try {
 			BitMatrix bitmatrix = writer.encode(QrCodeEntity.toString(), BarcodeFormat.QR_CODE, 350, 350);

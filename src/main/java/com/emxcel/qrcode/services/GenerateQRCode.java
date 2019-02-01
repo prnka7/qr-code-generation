@@ -19,6 +19,7 @@ public class GenerateQRCode {
 	private String QRCODE_PATH = "C:\\Users\\admin\\Desktop\\image\\";
 
 	public void generateqrcode() {
+		
 		String urlRegex = "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
 		String facebookRegex = "((http|https)://)?(www[.])?facebook.com/.+";
 		String twitterRegex = "http(s)?://(.*\\.)?twitter\\.com/.+";
@@ -33,10 +34,10 @@ public class GenerateQRCode {
 		GenerateQRCode codeGenerator = new GenerateQRCode();
 		int i = 0;
 		boolean counter = true;
+		System.out.println("Welcome	to	QR	Code	application.");
 		String fullname, occu, add, web, facebook, twitter, link;
 		do {
 
-			System.out.println("Enter Input");
 			do {
 				System.out.print("Enter your Full name:");
 				fullname = sc.nextLine();
@@ -112,9 +113,18 @@ public class GenerateQRCode {
 
 			System.out.println(
 					codeGenerator.writeQRCode(new QrCodeEntity(fullname, occu, add, web, facebook, twitter, link)));
+			System.out.println("QR	Code	has	been	generated	to "+QRCODE_PATH+" "+fullname+".png");
+			System.out.println("Press	enter	for	another	QR	Code	or	press	Q	to	exit");
+			char choice=sc.next().charAt(0);
+			
+			if(choice=='Q'||choice=='q')
+			{
+				System.exit(0);
+			}
+			
 
 		} while (i >= 1);
-		System.out.println("Welcome	to	QR	Code	application.");
+		
 		
 
 	}

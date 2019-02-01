@@ -1,47 +1,40 @@
 package com.emxcel.qrcode.main;
 
+import java.io.File;
 import java.util.Scanner;
 
 import com.emxcel.qrcode.services.GenerateQRCode;
-import com.emxcel.qrcode.services.GenerateSimpleJSONFile;
 import com.emxcel.qrcode.services.GenerateThreadJSONFile;
-
 
 public class Main {
 
 	public static void main(String[] args) {
-		@SuppressWarnings("resource")
+		@SuppressWarnings({ "resource", "unused" })
 		Scanner sc = new Scanner(System.in);
+		File pathForJson = null;
+		String storagepath = "";
 		GenerateQRCode simpleQrCodeobj = new GenerateQRCode();
-		GenerateSimpleJSONFile withoutThreadJsonFileObj = new GenerateSimpleJSONFile();
 		GenerateThreadJSONFile withThreadJsonFileObj = new GenerateThreadJSONFile();
-	
-		int i = 1;
-		do {
-			System.out.println("Welcome	to	QR	Code	application");
-			System.out.println("1.Generate QR QrCodeEntity by entering details one-by-one");
-			System.out.println("2.Generate QR Code with the help of JSON File without thread ");
-			System.out.println("3.Generate QR Code with the help of JSON File with thread ");
-			System.out.println("4.Exit");
-			System.out.println("Enter Your choice");
-			int userchoice = sc.nextInt();
-			switch (userchoice) {
-			case 1:
+		try {
+
+			if ((args != null) && (args.length != 0)) {
+				if (args[0].charAt(0) == '-' && args[0].charAt(1) == 'f')
+					pathForJson = new File(args[1]);
+				if (args[2].length()!=0  && args[2].charAt(0) == '-' && args[2].charAt(1) == 's')
+				{
+					System.out.println("Inside loop");
+					storagepath = args[3];
+				}
+				else
+				{
+					System.out.println("Empty");
+				}
+				withThreadJsonFileObj.threadjsonfile(pathForJson, storagepath);
+			} else 
 				simpleQrCodeobj.generateqrcode();
-				break;
-			case 2:
-				withoutThreadJsonFileObj.simplejson();
-				break;
-			case 3:
-				withThreadJsonFileObj.threadjsonfile();
-				break;
-			case 4:
-				System.exit(0);
-				break;
-			default:
-				System.out.println("Enter Proper Choice");
-			}
-		} while (i >= 1);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 	}
 
