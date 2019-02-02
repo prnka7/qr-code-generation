@@ -14,13 +14,12 @@ public class GenerateThreadJSONFile {
 	public void threadjsonfile(File filePath,String storagePath) {
 	//	if(!storagePath.equals(null));
 			
-			
-		File file = new File(filePath.toString());
+			System.out.println(filePath+"---Filepath");
 		GenerateThreadJSONFile threadobj = new GenerateThreadJSONFile();
-		String extension = threadobj.getFileExtension(file.getName());
+		String extension = threadobj.getFileExtension(filePath.getName());
 		ExecutorService service = Executors.newFixedThreadPool(10);
 		if (extension.equals("json")) {
-			List<QrCodeEntity> QrCodeEntities = GenerateThreadJSONFile.transform(file);
+			List<QrCodeEntity> QrCodeEntities = GenerateThreadJSONFile.transform(filePath);
 			System.out.println("Total persons to be imported : " + QrCodeEntities.size());
 
 			for (QrCodeEntity c : QrCodeEntities) {

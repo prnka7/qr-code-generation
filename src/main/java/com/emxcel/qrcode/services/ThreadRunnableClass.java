@@ -27,8 +27,8 @@ public class ThreadRunnableClass implements Runnable {
 		writeQRCode(QrCodeEntity,storagePath);
 	}
 	public String writeQRCode(QrCodeEntity QrCodeEntity,String storagePath) {
-		if(storagePath.equals(""))
-			storagePath="E:\\image\\";
+		if(storagePath.equals("")) {
+			storagePath="E:\\image\\";}
 		String qrcode = storagePath + QrCodeEntity.getFullName() + "-QRCODE.png";
 		QRCodeWriter writer = new QRCodeWriter();
 		try {
