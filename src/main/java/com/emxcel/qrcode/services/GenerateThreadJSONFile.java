@@ -11,23 +11,28 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.CollectionType;
 
 public class GenerateThreadJSONFile {
-	public void threadjsonfile(File filePath,String storagePath) {
-	//	if(!storagePath.equals(null));
-			
-			System.out.println(filePath+"---Filepath");
+	public void threadjsonfile(File filePath, String storagePath) {
+		System.out.println("Proecessing File.....");
 		GenerateThreadJSONFile threadobj = new GenerateThreadJSONFile();
 		String extension = threadobj.getFileExtension(filePath.getName());
 		ExecutorService service = Executors.newFixedThreadPool(10);
 		if (extension.equals("json")) {
 			List<QrCodeEntity> QrCodeEntities = GenerateThreadJSONFile.transform(filePath);
-			System.out.println("Total persons to be imported : " + QrCodeEntities.size());
-
+			System.out.println("Total " + QrCodeEntities.size() + " profile found for QR Code generation...");
+			System.out.println("Generating QR Codes....");
 			for (QrCodeEntity c : QrCodeEntities) {
-				Runnable threadJsonrun = new ThreadRunnableClass(c,storagePath);
+				Runnable threadJsonrun = new ThreadRunnableClass(c, storagePath);
 				service.execute(threadJsonrun);
 			}
 		} else {
 			System.err.println("The given file format is not supported");
+		}
+		if (storagePath == "") {
+			storagePath = "E:\\image\\";
+			System.out.println("QR Code has been generated to " + storagePath);
+
+		} else {
+			System.out.println("QR Code has been generated to " + storagePath);
 		}
 		service.shutdown();
 	}

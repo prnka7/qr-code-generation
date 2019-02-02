@@ -18,7 +18,7 @@ public class GenerateQRCode {
 
 	private String QRCODE_PATH = "C:\\Users\\admin\\Desktop\\image\\";
 
-	public void generateqrcode() {
+	public void generateqrcode()  {
 		
 		String urlRegex = "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
 		String facebookRegex = "((http|https)://)?(www[.])?facebook.com/.+";
@@ -36,6 +36,8 @@ public class GenerateQRCode {
 		boolean counter = true;
 		System.out.println("Welcome	to	QR	Code	application.");
 		String fullname, occu, add, web, facebook, twitter, link;
+		boolean read=true;
+		try {
 		do {
 
 			do {
@@ -113,18 +115,25 @@ public class GenerateQRCode {
 
 			System.out.println(
 					codeGenerator.writeQRCode(new QrCodeEntity(fullname, occu, add, web, facebook, twitter, link)));
-			System.out.println("QR	Code	has	been	generated	to "+QRCODE_PATH+" "+fullname+".png");
-			System.out.println("Press	enter	for	another	QR	Code	or	press	Q	to	exit");
-			char choice=sc.next().charAt(0);
+			System.out.println("QR Code	has	been generated to "+QRCODE_PATH+" "+fullname+".png");
+			System.out.println("Press enter for	another	QR Code	or press Q to exit");
+			String choice=sc.next();
 			
-			if(choice=='Q'||choice=='q')
+			if(choice=="Q"||choice=="q")
 			{
 				System.exit(0);
 			}
-			
-
-		} while (i >= 1);
+			else
+			{
+				read=true;
+			}
 		
+		} while (!read);
+	
+	}catch(Exception e)
+	{
+		e.printStackTrace();
+	}
 		
 
 	}
