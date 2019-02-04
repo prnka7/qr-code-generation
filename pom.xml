@@ -9,7 +9,12 @@
 	<name>QR_Code</name>
 	<url>http://maven.apache.org</url>
 	<description>QR_Code_Generation</description>
-
+<properties>
+		<java.version>11</java.version>
+		<maven.compiler.source>${java.version}</maven.compiler.source>
+		<maven.compiler.target>${java.version}</maven.compiler.target>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>com.google.zxing</groupId>

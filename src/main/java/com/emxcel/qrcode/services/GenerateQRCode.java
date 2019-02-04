@@ -32,7 +32,6 @@ public class GenerateQRCode {
 		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
 		GenerateQRCode codeGenerator = new GenerateQRCode();
-		int i = 0;
 		boolean counter = true;
 		System.out.println("Welcome	to	QR	Code	application.");
 		String fullname, occu, add, web, facebook, twitter, link;
@@ -43,21 +42,21 @@ public class GenerateQRCode {
 			do {
 				System.out.print("Enter your Full name:");
 				fullname = sc.nextLine();
-				if (fullname.isEmpty()) {
+				if (fullname.isBlank()) {
 					counter = false;
 				}
 			} while (!counter);
 			do {
 				System.out.print("Enter your Occupation:");
 				occu = sc.nextLine();
-				if (occu.isEmpty()) {
+				if (occu.isBlank()) {
 					counter = false;
 				}
 			} while (counter = false);
 			do {
 				System.out.print("Address");
 				add = sc.nextLine();
-				if (add.isEmpty()) {
+				if (add.isBlank()) {
 					counter = false;
 				}
 			} while (counter = false);
@@ -66,7 +65,7 @@ public class GenerateQRCode {
 				System.out.print("Website: ");
 				web = sc.nextLine();
 				urlMatcher = urlPattern.matcher(web);
-				if (!urlMatcher.matches() || web.isEmpty()) {
+				if (!urlMatcher.matches() || web.isBlank()) {
 					counter = false;
 					System.out.println("Enter url properly");
 				} else
@@ -76,7 +75,7 @@ public class GenerateQRCode {
 			do {
 				System.out.print("Facebook:");
 				facebook = sc.nextLine();
-				if (!facebook.isEmpty()) {
+				if (!facebook.isBlank()) {
 					facebookMatcher = facebookPattern.matcher(facebook);
 					if (!facebookMatcher.matches()) {
 						counter = false;
@@ -90,7 +89,7 @@ public class GenerateQRCode {
 			do {
 				System.out.print("Twitter:");
 				twitter = sc.nextLine();
-				if (!twitter.isEmpty()) {
+				if (!twitter.isBlank()) {
 					twitterMatcher = twitterPattern.matcher(twitter);
 					if (!twitterMatcher.matches()) {
 						counter = false;
@@ -103,7 +102,7 @@ public class GenerateQRCode {
 			do {
 				System.out.print("LinkedIn:");
 				link = sc.nextLine();
-				if (!link.isEmpty()) {
+				if (!link.isBlank()) {
 					linkMatcher = linkPattern.matcher(link);
 					if (!linkMatcher.matches()) {
 						counter = false;
