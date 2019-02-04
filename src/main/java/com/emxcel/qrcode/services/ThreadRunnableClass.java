@@ -22,8 +22,6 @@ public class ThreadRunnableClass implements Runnable {
 	}
 
 	public void run() {
-		// TODO Auto-generated method stub
-	//	storagePath="";
 		writeQRCode(QrCodeEntity,storagePath);
 	}
 	public String writeQRCode(QrCodeEntity QrCodeEntity,String storagePath) {
